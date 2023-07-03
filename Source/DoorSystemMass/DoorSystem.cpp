@@ -32,7 +32,7 @@ void ADoorSystem::Tick(float DeltaTime)
 
 void ADoorSystem::PingAboutHitting(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
-	if (CanHittedStatus)
+	if (CanHittedStatus && IsDoorClosedStatus)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("To open the door, you must put some objects in the trigger (Avaliable mass >= %f kg)"), MaxTotalMass);
 		CanHittedStatus = false;

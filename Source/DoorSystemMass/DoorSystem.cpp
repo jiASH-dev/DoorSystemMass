@@ -7,6 +7,7 @@ ADoorSystem::ADoorSystem()
 
 	IsDoorClosedStatus = true;
 	CanHittedStatus = true;
+	MaxTotalMass = 50.f;
 
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	RootComponent = Root;
@@ -33,7 +34,7 @@ void ADoorSystem::PingAboutHitting(UPrimitiveComponent* HitComponent, AActor* Ot
 {
 	if (CanHittedStatus)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("To open the door, you must put some objects in the trigger (Avaliable mass = 50 kg)"));
+		UE_LOG(LogTemp, Warning, TEXT("To open the door, you must put some objects in the trigger (Avaliable mass >= %f kg)"), MaxTotalMass);
 		CanHittedStatus = false;
 	}
 }
@@ -61,6 +62,11 @@ void ADoorSystem::SetDoorZAngleByAlphaToOpen(float Alpha)
 void ADoorSystem::SetDoorZAngleByAlphaToClose(float Alpha)
 {
 	SetDoorZAngle(EAngle::ZERO_ANGLE, Alpha);
+}
+
+float ADoorSystem::GetMaxTotalMass()
+{
+	return MaxTotalMass;
 }
 
 void ADoorSystem::SetDoorZAngle(EAngle angle, float Alpha)

@@ -23,6 +23,8 @@ protected:
 		UStaticMeshComponent* DoorWay;
 	UPROPERTY(EditDefaultsOnly)
 		UStaticMeshComponent* Door;
+	UPROPERTY(EditAnywhere)
+		float MaxTotalMass;
 
 private:
 	bool IsDoorClosedStatus;
@@ -45,6 +47,8 @@ public:
 		void SetDoorZAngleByAlphaToOpen(float Alpha);
 	UFUNCTION(BlueprintCallable)
 		void SetDoorZAngleByAlphaToClose(float Alpha);
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+		float GetMaxTotalMass();
 
 protected:
 	virtual void BeginPlay() override;
